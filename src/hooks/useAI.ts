@@ -1,5 +1,7 @@
 import { useSessionStore } from "../context/SessionStore";
 import OpenAI from "openai";
+import { GIFT_RECOMMENDER_PROMPT, TRAVE_AGENT_PROMPT } from "../prompts";
+import { formattedMessages, formatToValidMessage } from "../helpers";
 
 const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
@@ -9,54 +11,27 @@ const openai = new OpenAI({
 });
 console.log("init openAI");
 
-const PROMPT = `You are an AI Trip Planner Agent. Your goal is to help the user plan a trip by **asking one relevant trip-related question at a time**.
-
- Only ask questions about the following details in order, and wait for the user’s answer before asking the next: 
-
-1. Starting location (source) 
-2. Destination city or country 
-3. Group size (Solo, Couple, Family, Friends) 
-4. Budget (Low, Medium, High) 
-5. Trip duration (number of days) 
-6. Travel interests (e.g., adventure, sightseeing, cultural, food, nightlife, relaxation) 
-7. Special requirements or preferences (if any)
-Do not ask multiple questions at once, and never ask irrelevant questions.
-If any answer is missing or unclear, politely ask the user to clarify before proceeding.
-Always maintain a conversational, interactive style while asking questions.
-Along wth response also send which ui component to display for generative UI for example 'budget/groupSize/TripDuration/Final) , where Final means AI generating complete final outpur
-Once all required information is collected, generate and return a **strict JSON response only** (no explanations or extra text) with following JSON schema:
-{
-  resp:'Text Resp',
-  ui:'budget/groupSize/TripDuration/Final)'
-}
-`;
-
 const sendMessageToAI = async () => {
-  const { addMessage, messages } = useSessionStore.getState();
+  const { addMessage, messages, agentTheme } = useSessionStore.getState();
   try {
-    const formattedMessages = messages.map((msg) => ({
-      role: msg.sender as "user" | "assistant",
-      content: msg.text,
-    }));
-
     const completion = await openai.chat.completions.create({
       model: "openai/gpt-4.1-mini",
       response_format: { type: "json_object" },
       messages: [
         {
           role: "system",
-          content: PROMPT,
+          content:
+            agentTheme === "travelAgent"
+              ? TRAVE_AGENT_PROMPT
+              : GIFT_RECOMMENDER_PROMPT,
         },
-        ...formattedMessages,
+        ...formattedMessages(messages),
       ],
     });
-
-    const text = await JSON.parse(
-      completion?.choices?.[0]?.message?.content ?? ""
+    console.log(agentTheme, completion?.choices?.[0]?.message?.content);
+    addMessage(
+      formatToValidMessage(completion?.choices?.[0]?.message?.content)
     );
-    console.log(text, "LOL1");
-
-    addMessage({ sender: "assistant", text: text?.resp || "No response." });
   } catch {
     addMessage({
       sender: "assistant",

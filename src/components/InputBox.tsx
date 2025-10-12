@@ -20,7 +20,7 @@ const InputBox = () => {
   };
   return (
     <form
-      className="min-w-[70%] flex gap-2 justify-center items-center m-auto"
+      className="w-full lg:max-w-[80%] flex gap-2 justify-center items-center m-auto"
       onSubmit={handleSubmit}
     >
       <input
