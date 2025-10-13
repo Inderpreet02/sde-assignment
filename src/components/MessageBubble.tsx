@@ -6,7 +6,7 @@ const MessageBubble = ({ sender, text, ui }: Message) => {
   return (
     <div className={`flex ${isUser ? "justify-end" : "justify-start"} mb-2`}>
       <div
-        className={`max-w-[90%] p-3 rounded-2xl typewriter ${
+        className={`max-w-[90%] p-3 rounded-2xl ${
           isUser ? "bg-secondaryColor text-primaryColor mb-20" : ""
         }`}
       >
