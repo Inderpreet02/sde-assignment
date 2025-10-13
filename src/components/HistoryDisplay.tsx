@@ -25,7 +25,7 @@ const HistoryDisplay = ({
 }) => {
   const { setSummary, setMessages } = useSessionStore();
   return (
-    <div className="p-4 min-h-screen w-full flex flex-col gap-1">
+    <div className="p-4 bg-primaryColor min-h-screen w-full flex flex-col gap-1">
       <Header setShowHistory={setShowHistory} />
       <div className=" text-gray-800 w-full md:max-w-[80%] m-auto flex-1">
         <h2 className="text-2xl font-bold mb-4">Chat History</h2>
