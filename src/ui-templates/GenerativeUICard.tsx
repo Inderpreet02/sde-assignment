@@ -60,15 +60,54 @@ const OccasionOptions = [
   },
 ];
 
+const travelInterestsOptions = [
+  {
+    id: "adventure",
+    title: "Adventure",
+    icon: "🧗‍♂️",
+  },
+  {
+    id: "relaxation",
+    title: "Relaxation",
+    icon: "🏖️",
+  },
+  {
+    id: "culture",
+    title: "Culture",
+    icon: "🏛️",
+  },
+  {
+    id: "nature",
+    title: "Nature",
+    icon: "🌲",
+  },
+  {
+    id: "food",
+    title: "Food",
+    icon: "🍲",
+  },
+];
+
+const finalSummaryOptions = [
+  {
+    id: "summary",
+    title: "Would you like an itinerary summary?",
+    icon: "📄",
+    button: true,
+  },
+];
+
 const GenerativeCardsMapper = {
   budget: budgetOptions,
   tripDuration: TripDurationOptions,
   occasion: OccasionOptions,
+  travelInterests: travelInterestsOptions,
+  final: finalSummaryOptions,
 };
 
 export type GenerativeCardKeys = keyof typeof GenerativeCardsMapper;
 
-const BudgetCards = ({ uiElement }: { uiElement: GenerativeCardKeys }) => {
+const GenerativeUiCard = ({ uiElement }: { uiElement: GenerativeCardKeys }) => {
   const { addMessage } = useSessionStore();
   const GenerativeCards = GenerativeCardsMapper[uiElement] || [];
   return (
@@ -89,10 +128,18 @@ const BudgetCards = ({ uiElement }: { uiElement: GenerativeCardKeys }) => {
             <div className="text-lg">{option.icon}</div>
             <div className="font-semibold text-center">{option.title}</div>
           </div>
+          {"button" in option && option.button && (
+            <button
+              className="text-primaryColor m-auto w-full"
+              onClick={() => sendMessageToAI(true)}
+            >
+              Generate Summary
+            </button>
+          )}
         </div>
       ))}
     </div>
   );
 };
 
-export default BudgetCards;
+export default GenerativeUiCard;

@@ -7,9 +7,14 @@ import TailwindDevTool from "./components/TailwindDevTool";
 import { useSessionStore } from "./context/SessionStore";
 import { FaPlaneDeparture } from "react-icons/fa";
 import { AGENT_TYPE } from "./constants";
+import { useHistory } from "./hooks/useHistory";
+import { useState } from "react";
+import HistoryDisplay from "./components/HistoryDisplay";
 
 function App() {
-  const { agentTheme, setAgentType } = useSessionStore();
+  const { agentTheme, setAgentType, history } = useSessionStore();
+  const [showHistory, setShowHistory] = useState(false);
+  useHistory();
   const sectionOptions = [
     {
       text: "Plan a trip to your dream destination with our AI travel agent.",
@@ -17,7 +22,6 @@ function App() {
       onClick: () => {
         setAgentType(AGENT_TYPE.TRAVEL);
       },
-      agentTheme: AGENT_TYPE.TRAVEL,
     },
     {
       text: "Find the best present for your loved ones with our gift recommendation AI.",
@@ -25,12 +29,14 @@ function App() {
       onClick: () => {
         setAgentType(AGENT_TYPE.GIFT);
       },
-      agentTheme: AGENT_TYPE.GIFT,
     },
   ];
+  if (showHistory) {
+    return <HistoryDisplay history={history} setShowHistory={setShowHistory} />;
+  }
   return (
     <div className="p-4 dark:bg-primaryColor min-h-screen w-full flex flex-col align-center gap-1">
-      <Header />
+      <Header setShowHistory={setShowHistory} />
       {agentTheme ? (
         <>
           <ChatWindow />

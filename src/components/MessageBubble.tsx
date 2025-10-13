@@ -1,5 +1,5 @@
-import type { Message } from "../context/SessionStore";
-import BudgetCards from "../ui-templates/BudgetCard";
+import { type Message } from "../context/SessionStore";
+import GenerativeUiCard from "../ui-templates/GenerativeUICard";
 
 const MessageBubble = ({ sender, text, ui }: Message) => {
   const isUser = sender === "user";
@@ -11,7 +11,7 @@ const MessageBubble = ({ sender, text, ui }: Message) => {
         }`}
       >
         {text}
-        <div>{ui ? <BudgetCards uiElement={ui} /> : null}</div>
+        <div>{ui ? <GenerativeUiCard uiElement={ui} /> : null}</div>
       </div>
     </div>
   );

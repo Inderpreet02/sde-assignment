@@ -20,12 +20,11 @@ Once all required information is collected, generate and return a **strict JSON 
 `;
 
 const TRAVE_AGENT_SUMMARY_PROMPT = `Generate Travel Plan with give details, estimate costs, travel tips, a packing list, give me Hotels options list with HotelName, 
- Hotel address, Price, hotel image url, rating, descriptions and suggest itinerary with placeName, Place Details, Place Image Url,
+ Hotel address, travel tips,  Price, hotel image url, rating, descriptions and suggest itinerary with placeName, Place Details, Place Image Url,
  Geo Coordinates, Place address, ticket Pricing, Time travel each of the location , with each day plan with best time to visit in JSON format.
  Output Schema:
 
  {
-
   "trip_plan": {
     "destination": "string",
     "duration": "string",
@@ -46,6 +45,10 @@ const TRAVE_AGENT_SUMMARY_PROMPT = `Generate Travel Plan with give details, esti
         "description": "string"
       }
     ],
+    "flight_options": {
+      "flight_from": "string",
+      "flight_to": "string",
+    }
     "itinerary": [
       {
         "day": "number",
@@ -70,7 +73,8 @@ const TRAVE_AGENT_SUMMARY_PROMPT = `Generate Travel Plan with give details, esti
     ],
     "packing_list": [
      { "item": "string", "quantity": "string" }
-    ]
+    ],
+    travel_tips: [ "string" ]
   }
 }
 `;
@@ -90,13 +94,13 @@ If any answer is missing or unclear, politely ask the user to clarify before con
 Always maintain a warm, conversational style while asking questions.
 
 Along with each response, include which UI component to display for generative UI using one of the following:
-occasion / relation / age / interests / budget / preferences / Final — where Final indicates that all necessary information has been collected and the AI should generate the final output.
+occasion / relation / age / interests / budget / preferences / final — where Final indicates that all necessary information has been collected and the AI should generate the final output.
 
 Once all required information is collected, generate and return a strict JSON response only (no explanations or extra text) in the following schema:
 
 {
   "resp": "Text response with gift suggestions and reasoning.",
-  "ui": "occasion/relation/age/interests/budget/preferences/Final"
+  "ui": "occasion/relation/age/interests/budget/preferences/final"
 }
 
 `;

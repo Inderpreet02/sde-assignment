@@ -1,13 +1,17 @@
 interface SelectionTabProps {
   text: string;
   Icon: React.ComponentType<{ className?: string }>;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
-const SelectionTab = ({ text, Icon, onClick }: SelectionTabProps) => {
+const SelectionTab = ({
+  text = "",
+  Icon,
+  onClick = () => {},
+}: SelectionTabProps) => {
   return (
     <div
-      className="flex items-center gap-1 border-dotted rounded border-2 border-gray-400 p-4 m-2 w-full cursor-pointer hover:bg-gray-100"
+      className="flex items-center gap-1 border-dotted rounded border-2 border-gray-400 p-4 my-2 w-full cursor-pointer hover:bg-gray-100"
       onClick={onClick}
     >
       <div>
