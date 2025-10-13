@@ -11,7 +11,7 @@ const ChatWindow = () => {
   const { listRef } = useScrollToView();
   return (
     <div
-      className="flex-1 overflow-x-auto m-auto w-full md:max-w-[80%] max-h-[calc(100vh-200px)]"
+      className="flex-1 overflow-x-auto scrollbar m-auto w-full md:max-w-[80%] max-h-[calc(100vh-200px)]"
       ref={listRef}
     >
       {messages.length === 0
