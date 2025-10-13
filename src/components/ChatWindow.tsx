@@ -32,7 +32,10 @@ const ChatWindow = () => {
       {agentTheme === AGENT_TYPE.TRAVEL ? (
         <TravelSummaryDisplay summary={summary} />
       ) : (
-        <div>Summary To be implemented</div>
+        <div>
+          Summary To be implemented - You can check the final response in
+          console
+        </div>
       )}
     </div>
   );
