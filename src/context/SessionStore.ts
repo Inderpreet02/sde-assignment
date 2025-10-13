@@ -44,5 +44,5 @@ export const useSessionStore = create<SessionState>((setter) => ({
     setter({ isMessageLoading: isLoading }),
   setSummary: (summary: SummaryProps) => setter({ summary: summary }),
   setHistory: (history: HistoryProps[]) => setter({ history: history }),
-  setMessages: (messages: Message[]) => setter({ messages: messages }),
+  setMessages: (messages: Message[]) => setter({ messages: [...messages] }),
 }));

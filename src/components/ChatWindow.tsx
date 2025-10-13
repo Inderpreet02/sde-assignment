@@ -7,7 +7,6 @@ import TravelSummaryDisplay from "./TravelSummaryDisplay";
 
 const ChatWindow = () => {
   const { messages, agentTheme, isMessageLoading, summary } = useSessionStore();
-
   const { listRef } = useScrollToView();
   return (
     <div

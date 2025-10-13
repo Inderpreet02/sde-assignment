@@ -23,7 +23,7 @@ const HistoryDisplay = ({
   history: HistoryProps[];
   setShowHistory: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const { setSummary, setMessages } = useSessionStore();
+  const { setSummary, setMessages, setAgentType } = useSessionStore();
   return (
     <div className="p-4 bg-primaryColor min-h-screen w-full flex flex-col gap-1">
       <Header setShowHistory={setShowHistory} />
@@ -35,9 +35,10 @@ const HistoryDisplay = ({
               text={data?.summary?.destination}
               Icon={FaHistory}
               onClick={() => {
-                setShowHistory(false);
                 setMessages(data.messages);
                 setSummary(data.summary);
+                setAgentType(data?.agentTheme);
+                setShowHistory(false);
               }}
             />
           ))}
