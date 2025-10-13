@@ -49,7 +49,9 @@ const TravelSummaryDisplay = ({
 
   return (
     <div className="p-2 border-t-1 flex flex-col gap-4" id="content-to-print">
-      <div onClick={() => saveToLocalStorage()}>Save</div>
+      <div className="pointer" onClick={() => saveToLocalStorage()}>
+        Save
+      </div>
       <h3 className="text-2xl font-bold text-gray-900">
         You Detailed Travel Plan
       </h3>

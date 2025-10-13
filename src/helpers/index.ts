@@ -45,12 +45,12 @@ export const promptSelector = (isFinalMessage: boolean, agentTheme: string) => {
 export const saveToLocalStorage = () => {
   const { agentTheme, messages, summary } = useSessionStore.getState();
 
-  const existingHistory = localStorage.getItem("chat_history");
   try {
+    const existingHistory = localStorage.getItem("chat_history");
     localStorage.setItem(
       "chat_history",
       JSON.stringify([
-        ...(existingHistory ? JSON.parse(existingHistory) : {}),
+        ...(existingHistory ? JSON.parse(existingHistory) : []),
         {
           agentTheme: agentTheme,
           messages: messages,
