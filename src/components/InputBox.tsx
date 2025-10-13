@@ -30,7 +30,7 @@ const InputBox = () => {
         id="search-input"
         autoComplete="off"
         className="text-black w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primaryColor"
-        placeholder="Search Here"
+        placeholder="Type Here"
         value={input}
       />
       <button
