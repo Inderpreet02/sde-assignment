@@ -24,7 +24,7 @@ const HotelDisplay = ({ hotel }: { hotel: HotelProps }) => {
       key={hotel?.hotel_name}
     >
       <div>
-        <h3 className="text-lg font-bold text-gray-900 dark:text-secondaryColor">
+        <h3 className="text-lg font-bold text-secondaryColor">
           {hotel?.hotel_name}
         </h3>
         <div className="italic text-sm text-gray-500">{hotel?.description}</div>

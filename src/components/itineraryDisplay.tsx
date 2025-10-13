@@ -14,9 +14,7 @@ const ItineraryDisplay = ({
   return (
     <div>
       {heading && (
-        <h2 className="mb-2 text-lg font-bold text-gray-900 dark:text-secondaryColor">
-          {heading}
-        </h2>
+        <h2 className="mb-2 text-lg font-bold text-gray-900">{heading}</h2>
       )}
       <div>
         {itinerary.map((data, index) => (

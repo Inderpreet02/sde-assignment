@@ -60,9 +60,7 @@ const TravelSummaryDisplay = ({
         heading="Flights"
       />
 
-      <h3 className="text-lg font-bold text-gray-900 dark:text-secondaryColor">
-        Best Hotels
-      </h3>
+      <h3 className="text-lg font-bold text-gray-900">Best Hotels</h3>
       {summary?.hotels.map((hotel) => (
         <HotelDisplay hotel={hotel} />
       ))}

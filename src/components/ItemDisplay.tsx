@@ -16,9 +16,7 @@ const ItemDisplay = ({
   return (
     <div>
       {heading && (
-        <h2 className="mb-2 text-lg font-bold text-gray-900 dark:secondaryColor">
-          {heading}
-        </h2>
+        <h2 className="mb-2 text-lg font-bold text-gray-900">{heading}</h2>
       )}
       {itemList.map((itemObj, index) => (
         <div key={index} className="mb-1 flex items-start gap-2">

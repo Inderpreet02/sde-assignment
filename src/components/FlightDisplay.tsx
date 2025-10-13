@@ -23,7 +23,7 @@ const FlightDisplay = ({
   return (
     <div>
       {heading && (
-        <h2 className="mb-2 text-lg font-bold text-gray-900 dark:secondaryColor">
+        <h2 className="mb-2 text-lg font-bold text-gray-900 secondaryColor">
           {heading}
         </h2>
       )}

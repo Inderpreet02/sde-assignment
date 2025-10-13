@@ -25,7 +25,7 @@ const LocationDisplay = ({ place }: { place: PlaceProps }) => {
       key={place?.place_name}
     >
       <div>
-        <h3 className="text-lg font-bold text-gray-900 dark:text-secondaryColor">
+        <h3 className="text-lg font-bold text-gray-900 ">
           {place?.place_name}
         </h3>
         <div className="italic text-sm text-gray-500">

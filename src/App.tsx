@@ -35,7 +35,7 @@ function App() {
     return <HistoryDisplay history={history} setShowHistory={setShowHistory} />;
   }
   return (
-    <div className="p-4 dark:bg-primaryColor min-h-screen w-full flex flex-col align-center gap-1">
+    <div className="p-4 bg-primaryColor min-h-screen w-full flex flex-col align-center gap-1">
       <Header setShowHistory={setShowHistory} />
       {agentTheme ? (
         <>
