@@ -1,9 +1,9 @@
 import { useSessionStore } from "../context/SessionStore";
 import { useScrollToView } from "../hooks/useScrollToView";
 import MessageBubble from "./MessageBubble";
-import { popularQuestions } from "../constants";
+import { AGENT_TYPE, popularQuestions } from "../constants";
 import SelectionTab from "./SelectionTab";
-import ChatSummaryDisplay from "./ChatSummaryDisplay";
+import TravelSummaryDisplay from "./TravelSummaryDisplay";
 
 const ChatWindow = () => {
   const { messages, agentTheme, isMessageLoading, summary } = useSessionStore();
@@ -30,7 +30,11 @@ const ChatWindow = () => {
         <div className="shimmer text-2xl p-2 font-bold">Thinking...</div>
       ) : null}
 
-      <ChatSummaryDisplay summary={summary} />
+      {agentTheme === AGENT_TYPE.TRAVEL ? (
+        <TravelSummaryDisplay summary={summary} />
+      ) : (
+        <div>Summary To be implemented</div>
+      )}
     </div>
   );
 };

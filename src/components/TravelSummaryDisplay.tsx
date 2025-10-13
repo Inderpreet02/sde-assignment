@@ -16,7 +16,7 @@ export interface SummaryProps {
   travel_tips: string[];
 }
 
-const ChatSummaryDisplay = ({
+const TravelSummaryDisplay = ({
   summary = {
     destination: "",
     estimate_costs: "",
@@ -79,4 +79,4 @@ const ChatSummaryDisplay = ({
   );
 };
 
-export default ChatSummaryDisplay;
+export default TravelSummaryDisplay;

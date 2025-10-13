@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import type { AGENT_TYPE } from "../constants";
 import type { GenerativeCardKeys } from "../ui-templates/GenerativeUICard";
-import type { SummaryProps } from "../components/ChatSummaryDisplay";
+import type { SummaryProps } from "../components/TravelSummaryDisplay";
 import type { HistoryProps } from "../components/HistoryDisplay";
 
 export interface Message {
@@ -25,13 +25,8 @@ interface SessionState {
   isMessageLoading: boolean;
   setIsMessageLoading: (isLoading: boolean) => void;
   setSummary: (summary: SummaryProps) => void;
-  setHistory: (
-    history: {
-      agentTheme: AgentType;
-      messages: Message[];
-      summary: SummaryProps;
-    }[]
-  ) => void;
+  setHistory: (history: HistoryProps[]) => void;
+  setMessages: (messages: Message[]) => void;
 }
 
 export const useSessionStore = create<SessionState>((setter) => ({
@@ -49,4 +44,5 @@ export const useSessionStore = create<SessionState>((setter) => ({
     setter({ isMessageLoading: isLoading }),
   setSummary: (summary: SummaryProps) => setter({ summary: summary }),
   setHistory: (history: HistoryProps[]) => setter({ history: history }),
+  setMessages: (messages: Message[]) => setter({ messages: messages }),
 }));
