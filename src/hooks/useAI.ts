@@ -9,7 +9,7 @@ import {
 const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
   apiKey:
-    "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",
+    "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",
   dangerouslyAllowBrowser: true,
 });
 
